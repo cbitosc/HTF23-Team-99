@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("{% static 'img2.jpg' %}");
+      background-repeat: no-repeat;
+      background-size: cover;
+  
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .signin-form {
+      background-color: rgba(255, 255, 255, 0.8);
+      /* Adjust the alpha value for transparency */
+      padding: 40px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      width: 45%;
+      padding: 10px;
+      background-color: #0070e0;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-left: 80px;
+    }
+
+    button:hover {
+      background-color: #005cbf;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    a {
+      color: #0070e0;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+
+
+    nav {
+      background-color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      margin-left: 100px;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li:last-child {
+      margin-right: 0;
+    }
+
+    nav ul li a {
+      color: #333;
+      display: inline-block;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #777;
+      text-decoration: none;
+    }
+
+    nav ul li a {
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav ul li a::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #777;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+
+    nav ul li a:hover::before {
+      transform: scaleX(1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      margin: 10px 10px;
+    }
+
+    .logo img {
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    h5{
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form class="signin-form" action="signin" method="POST">
+      {% csrf_token %}
+      <h1>Sign In</h1>
+      {% for message in messages%}
+      <h5>
+        {{message}}
+      </h5>
+      {% endfor %}
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <button type="submit">Sign In</button>
+      <p>
+        Don't have an account?
+        <a href="">Sign Up</a>
+      </p>
+    </form>
+</body>
+
+</html>
